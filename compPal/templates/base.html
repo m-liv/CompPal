@@ -15,7 +15,8 @@
   </header>
 
   <main>
-    <form id="survey-form">
+    <form id="survey-form" action = "{% url '' %}" method = "post">
+      {% csrf_token %}
       <!-- Question 1 with dropdown -->
       <div class="question">
         <label for="memorySize">Question 1: What memory size is suitable for your needs?</label>
@@ -94,25 +95,42 @@
 </div>
 
 <script>
+  
   document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('survey-form');
     form.onsubmit = function(event) {
       event.preventDefault();
       var formData = new FormData(form);
-      fetch('/submit-survey/', {
+      fetch('', {
         method: 'POST',
         body: formData
       })
               .then(response => response.json())
               .then(data => {
                 // Handle response data from the backend
-                document.getElementById('result').textContent = data.result;
+               // document.getElementById('result').textContent = data.result;
               })
               .catch(error => {
                 console.error('Error:', error);
               });
     };
-  });
+  }); 
 </script>
+
+<!--
+<script>
+
+function logSubmit(event) {
+  log.textContent = `Form Submitted! Timestamp: ${event.timeStamp}`;
+  event.preventDefault();
+}
+
+const form = document.getElementById("survey-form");
+//const log = document.getElementById("log");
+form.addEventListener("submit", logSubmit);
+
+</script>
+-->
+
 </body>
 </html>
