@@ -15,6 +15,8 @@ def submit_survey(request):
         memory_size = form.cleaned_data['memorySize']
         processor = form.cleaned_data['processor']
         #TODO
+        print(memory_size)
+        print(processor)
         # Example: Perform some logic based on selected options
         recommendation = make_recommendation(memory_size, processor)
 
@@ -26,6 +28,8 @@ def submit_survey(request):
         return JsonResponse(response_data)
     else:
         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+    
+    return render(request, "name.html", {"form": form})
     
 def make_recommendation(memory_size, processor):
     return scrape_best_buy_laptops(memory_size, processor) 
