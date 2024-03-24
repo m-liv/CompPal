@@ -15,7 +15,7 @@
   </header>
 
   <main>
-    <form id="survey-form" action = "{% url '' %}" method = "post">
+    <form id="survey-form" action="{% url 'submit_survey' %}" method = "post">
       {% csrf_token %}
       <!-- Question 1 with dropdown -->
       <div class="question">
@@ -101,9 +101,10 @@
     form.onsubmit = function(event) {
       event.preventDefault();
       var formData = new FormData(form);
-      fetch('', {
+      fetch('/submit-survey/', {
         method: 'POST',
-        body: formData
+        body: formData,
+        
       })
               .then(response => response.json())
               .then(data => {
@@ -111,10 +112,27 @@
                // document.getElementById('result').textContent = data.result;
               })
               .catch(error => {
-                console.error('Error:', error);
+                console.error('Submission failed:', error);
               });
     };
   }); 
+
+  // Function to get CSRF token from cookies
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
 </script>
 
 <!--

@@ -6,21 +6,30 @@ import pandas as pd
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
+from urllib3 import HTTPResponse
 from .forms import SurveyForm  # Assuming you have a form class for validation
 
 @require_http_methods(["POST"])
 def submit_survey(request):
-    form = SurveyForm(request.POST)
+    if request.method == 'POST':
+        form = SurveyForm(request.POST)
     if form.is_valid():
         import json
-        post_data = json.loads(request.body.decode("utf-8"))
-        memory_size = form.get('memorySize')
-        print(post_data)
+        #post_data = json.loads(request.body.decode("utf-8"))
+        memorySize = form.cleaned_data['memorySize']
+        #print(post_data)
         processor = form.cleaned_data['processor']
-        #TODO
-        print(processor)
+        
+        #print(processor)
+        brand = form.cleaned_data['brand']
+        screen = form.cleaned_data['screen']
+        price = form.cleaned_data['price']
+        touch = form.cleaned_data['touch']
+        print(touch)
+
+
         # Example: Perform some logic based on selected options
-        #recommendation = make_recommendation(memory_size, processor)
+        recommendation = scrape_best_buy_laptops(memorySize, processor, brand, screen, price,touch)
 
         response_data = {
             'success': True,
@@ -31,12 +40,9 @@ def submit_survey(request):
     else:
         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
     
-    
-def make_recommendation(memory_size, processor):
-    return scrape_best_buy_laptops(memory_size, processor) 
 
 #scrapes the first four pages of the best buy website 
-def scrape_best_buy_laptops(memory_size, processor):
+def scrape_best_buy_laptops(memorySize, processor, brand, screen, price,touch):
     headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246"} 
     urls = ['https://www.bestbuy.com/site/searchpage.jsp?id=pcat17071&st=laptops+computers+on+sale', 
             'https://www.bestbuy.com/site/searchpage.jsp?cp=2&id=pcat17071&st=laptops+computers+on+sale', 
@@ -55,7 +61,7 @@ def scrape_best_buy_laptops(memory_size, processor):
     gb = []
     for i in laptop:
         name = i.get("name") #retrieves the value associated with the key
-        if (name.__contains__(memory_size)): #checks to see if the value contains the attribute
+        if (name.__contains__(memorySize)): #checks to see if the value contains the attribute
             gb.append(name) #adds the laptop to the list 
     processor = []
     for i in gb:

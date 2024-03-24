@@ -19,5 +19,6 @@ from compPal.views import submit_survey, demo
 
 urlpatterns = [
     path('', demo, name='demo'),
+    path('submit-survey/', submit_survey, name='submit_survey'),
     # Other URL patterns...
 ]

@@ -52,13 +52,13 @@ class SurveyForm(forms.Form):
 
 
     # Update question1 to use ChoiceField for memory size
-    question1 = forms.ChoiceField(
+    memorySize = forms.ChoiceField(
         label='What memory size would you need?',
         choices=MEMORY_SIZE_CHOICES
     )
 
     # Update question2 to use ChoiceField for processor type
-    question2 = forms.ChoiceField(
+    processor = forms.ChoiceField(
         label='What processor would you prefer?',
         choices=PROCESSOR_CHOICES
     )
@@ -66,21 +66,21 @@ class SurveyForm(forms.Form):
     # Assuming question3 and question4 are similar to the first two,
     # replace them with appropriate ChoiceFields and choices.
     # For example:
-    question3 = forms.ChoiceField(
+    brand = forms.ChoiceField(
         label='Do you have a brand preference?',
         choices=BRAND_CHOICES  # Replace with actual choices
     )
-    question4 = forms.ChoiceField(
+    screen = forms.ChoiceField(
         label='Do you want a particular screen size?',
         choices=SCREEN_SIZE  # Replace with actual choices
     )
 
-    question5 = forms.ChoiceField(
+    price = forms.ChoiceField(
         label='Which of these numbers is closest to your price range?',
         choices=PRICE  # Replace with actual choices
     )
 
-    question6 = forms.ChoiceField(
+    touch = forms.ChoiceField(
         label='Is having a touchscreen important to you?',
-        choices=PRICE  # Replace with actual choices
+        choices=TOUCHSCREEN  # Replace with actual choices
     )
