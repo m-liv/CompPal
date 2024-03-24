@@ -43,6 +43,11 @@ class SurveyForm(forms.Form):
 
     }
 
+    TOUCHSCREEN = {
+        ('YES', 'YES'),
+        ('NO', 'NO')
+    }
+
 
 
 
@@ -72,5 +77,10 @@ class SurveyForm(forms.Form):
 
     question5 = forms.ChoiceField(
         label='Which of these numbers is closest to your price range?',
+        choices=PRICE  # Replace with actual choices
+    )
+
+    question6 = forms.ChoiceField(
+        label='Is having a touchscreen important to you?',
         choices=PRICE  # Replace with actual choices
     )
