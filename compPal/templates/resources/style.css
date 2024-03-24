@@ -11,6 +11,7 @@ body {
     padding-top: 500px;
 }
 
+
 .container {
     display: flex;
     flex-direction: column;
@@ -26,6 +27,7 @@ main {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+
 header {
     background-color: #119952;
     color: white;
@@ -39,6 +41,7 @@ header {
     align-items: center;
     justify-content: flex-start;
 }
+
 
 .logo {
     height: 50px;
@@ -60,41 +63,55 @@ header h1 {
     }
 }
 
+.welcome h1{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typing;
+    animation-duration: 1.5s;
+    animation-timing-function: steps(30, end);
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  
 .welcome{
-    padding-top: auto;
-    margin-top: 100 px;
-    margin-bottom: 20px;
+    text-align: center; 
+    font-size: larger;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin-top: 200%;
+    margin-bottom: 50%;
     color: #e0e0e0;
     width: 100%;
-    text-align: center;
 }
 
 
 .survey-intro {
     padding-top: 20 px;
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
     color: #e0e0e0;
     align-self: center;
-    text-align: left;
+    text-align: center;
 }
 
 
 .survey-intro h2 {
     margin-top: 50px;
-    font-size: 22px;
     margin-bottom: 10px;
-}
-@media (max-width: 768 px) {
-    .survey-intro {
-       margin-top: auto;
-    }
+    text-align: left;
 }
 
 .survey-intro p {
     font-size: 18px;
     line-height: 1.6;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

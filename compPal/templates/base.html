@@ -14,26 +14,28 @@
     <img src="{% static 'shiba.png' %}" alt="InspectYour Gadget Logo" class="logo">
     <h1>InspectYour Gadget</h1>
   </header>
-  <section class="welcome">
-    <h2>Welcome to InspectYour Gadget! </h2>
-  </section>
+  
 
   <main>
+    <section class="welcome">
+      <h1>Welcome to InspectYour Gadget! </h1>
+      <h3>Helping you find the perfect laptop. </h3>
+    </section>
     <section class="survey-intro">
       <h2>Useful Information: </h2>
       <p>1. Deciding how much memory (or RAM) you need in a laptop depends on how you normally use your laptop </p>
-      <p>   Consider: What do you use your laptop for? </p>
-      <p>       *If you use your laptop for only basic tasks (like web browsing or answering emails) you'd likely only need 8 GB. </p>
-      <p>       *If you use your laptop for casual gaming or streaming you would probably prefer 16 GB. </p>
-      <p>       *If you use your laptop for larger game files or to edit photos and videos, 32 GB is needed. </p>
-      <p>       *If you use your laptop to deal with large datasets, virutal machines, etc. you would most likely need 64 GB. </p>
-
+      <p>       ➔If you use your laptop for only basic tasks (like web browsing or answering emails) you'd likely only need 8 GB. </p>
+      <p>       ➔If you use your laptop for casual gaming or streaming you would probably prefer 16 GB. </p>
+      <p>       ➔If you use your laptop for larger game files or to edit photos and videos, 32 GB is needed. </p>
+      <p>       ➔If you use your laptop to deal with large datasets, virutal machines, etc. you would most likely need 64 GB. </p>
+      <br>
       <p>2. Differences in processors</p>
-      <p>   Consider: What is more important to you? </p>
-      <p>       *If gaming capabilites, cost, and multitasking are important to you consider an AMD processor. </p>
-      <p>       *Is power efficency and compatability is important to you, consider an Intel Processor  </p>
-      <p>       *If integration with macOS and the apple ecosystem is important to you consider M-Series processors </p>
+      <p>       ➔If gaming capabilites, cost, and multitasking are important to you, consider an AMD processor. </p>
+      <p>       ➔Is power efficency and compatability are important to you, consider an Intel Processor  </p>
+      <p>       ➔If integration with macOS and the Apple ecosystem is important to you, consider M-Series processors </p>
     </section>
+    <br>
+    <h2>Laptop Survey: </h2>
     <form id="survey-form" action="{% url 'submit_survey' %}" method = "post">
       {% csrf_token %}
       <!-- Question 1 with dropdown -->
@@ -104,6 +106,7 @@
       </div>
 
       <button type="submit">Submit Answers</button>
+      <br>
     </form>
       <section class="survey-results">
         <h2>Survey Results: </h2>
